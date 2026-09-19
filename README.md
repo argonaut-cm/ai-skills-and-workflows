@@ -1,8 +1,9 @@
 # ai-skills-and-workflows
 
 Canonical source for the skills and workflows used across Claude Code, Codex and
-AntiGravity. One body per skill; the tools differ in where they look and which
-extra files they understand, not in what the skill says.
+Gemini CLI -- whether run directly or inside an IDE such as AntiGravity. One
+body per skill; the tools differ in where they look and which extra files they
+understand, not in what the skill says.
 
 ## Why one source and not one copy per tool
 
@@ -10,9 +11,9 @@ Because copies drift, and the drift is invisible until the wrong runner executes
 the stale one.
 
 In the options-scanner project a churn-triage gate was added to the Claude copy
-of `/debrief` and never to the AntiGravity copy. AntiGravity was the runner that
-actually ran it. The gap stood for six weeks and is still open. Four hand-kept
-variants of a skill is that failure mode squared.
+of `/debrief` and never to the `.agent/workflows` copy -- which was the one the
+agent doing the debriefs actually loaded. The gap stood for six weeks and is
+still open. Four hand-kept variants of a skill is that failure mode squared.
 
 So: the skill body lives here once, `sync.ps1` publishes it, and editing a
 destination by hand shows up as **drift** rather than quietly becoming the new
@@ -40,11 +41,22 @@ parser dependency -- `Import-PowerShellDataFile` is built in.
 
 ## Tools
 
-| Tool | Location | Scope | Notes |
+| Target | Location | Scope | Notes |
 |---|---|---|---|
 | Claude Code | `~/.claude/skills/<name>/` | user | ignores `agents/openai.yaml` |
 | Codex CLI | `~/.codex/skills/<name>/` | user | uses `agents/openai.yaml` for its picker |
-| AntiGravity | `<project>/.agent/workflows/<name>.md` | project | one flat file per workflow |
+| `project-workflows` | `<project>/.agent/workflows/<name>.md` | project | a project convention, not a tool directory |
+
+**AntiGravity is not a target.** It is an IDE; the agents running inside it are
+Claude Code, Codex and Gemini CLI, all covered above. An earlier version of the
+manifest modelled it as a third tool with its own skill format, which described
+something that does not exist.
+
+**Gemini CLI has no skill directory.** There is no `~/.gemini/commands`,
+`extensions` or `GEMINI.md` on this machine. When a global `GEMINI.md` exists it
+belongs in `Globals` as `global/gemini/GEMINI.md`, not in the table above. It is
+not stubbed, because a manifest entry with no source file claims something
+exists when it does not.
 
 Claude Code does **not** read `~/.codex/skills`, and Codex does not read
 `~/.claude/skills`. A skill installed only to one is invisible to the other --
