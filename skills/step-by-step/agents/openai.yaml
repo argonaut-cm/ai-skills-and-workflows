@@ -1,0 +1,4 @@
+interface:
+  display_name: "Step by Step"
+  short_description: "Guide complex work one approved step at a time"
+  default_prompt: "Use $step-by-step to guide this task one approved step at a time."

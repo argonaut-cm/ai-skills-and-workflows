@@ -1,0 +1,7 @@
+# Local state, never the canonical copy
+*.local
+.DS_Store
+Thumbs.db
+
+# graphify writes this on install; it is per-machine
+.graphify_version

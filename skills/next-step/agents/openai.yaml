@@ -1,0 +1,4 @@
+interface:
+  display_name: "Next Step"
+  short_description: "Select one evidence-backed project priority"
+  default_prompt: "Use $next-step to identify the single best next action for this project."
