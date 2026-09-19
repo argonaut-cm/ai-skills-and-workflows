@@ -26,6 +26,17 @@
         }
     }
 
+    # Single files that configure a tool globally rather than adding a skill.
+    # They are not skills, so they carry an explicit source and destination
+    # instead of going through the Tools table.
+    Globals = @{
+        'claude-output-style' = @{
+            From = 'global\claude\CLAUDE.md'
+            Dest = '$HOME\.claude\CLAUDE.md'
+            Note = 'Global output style. Authored 2026-09-19; the original was lost in the 13-Sep wipe and no copy survived.'
+        }
+    }
+
     # Which tools each skill is published to. A skill absent from a tool's list
     # is deliberate, not an oversight -- record the reason here.
     Skills = @{

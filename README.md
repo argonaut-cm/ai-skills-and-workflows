@@ -71,6 +71,13 @@ source does not read as drift.
 
 ## Adding a skill
 
+**[AGENTS.md](AGENTS.md) is the contributor contract** -- read it first, whether
+you are a person or an agent. It covers the layout, frontmatter, how to write a
+body that stays tool-neutral, the ASCII rule for `.ps1`, and what to check
+before committing. `CLAUDE.md` is a pointer to it, not a second copy.
+
+The short version:
+
 1. Create `skills/<name>/SKILL.md` with `name` and `description` frontmatter.
    The description is what the tool matches against, so write it as trigger
    conditions, not as a summary.
@@ -78,6 +85,16 @@ source does not read as drift.
 3. Add the skill to `Skills` in `targets.psd1`, listing its tools. Omitting a
    tool is a decision -- record why in a comment, as `graphify` does.
 4. Run `.\sync.ps1` to confirm, then `-Apply`.
+
+## Globals
+
+`global/` holds single files that configure a tool rather than add a skill.
+They are listed in `Globals` in `targets.psd1` with an explicit source and
+destination, and obey the same drift rules as everything else.
+
+| Entry | Installs to | Notes |
+|---|---|---|
+| `claude-output-style` | `~/.claude/CLAUDE.md` | Authored 2026-09-19; the original was lost and no copy survived |
 
 ## Keeping a skill tool-neutral
 

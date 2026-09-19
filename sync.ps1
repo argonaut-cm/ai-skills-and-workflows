@@ -57,6 +57,51 @@ function Test-SameContent {
 
 $results = @()
 
+# Globals first: single files that configure a tool rather than add a skill.
+# Same drift rules as everything else -- a hand-edited destination is reported,
+# not silently overwritten.
+if ($manifest.Globals -and (-not $Tool)) {
+    foreach ($globalName in ($manifest.Globals.Keys | Sort-Object)) {
+        $g    = $manifest.Globals[$globalName]
+        $from = Join-Path $repo $g.From
+        $to   = Resolve-Dest -Template $g.Dest -SkillName $globalName
+
+        if (-not (Test-Path $from)) {
+            Write-Warning "$($g.From) is in the manifest but not on disk"
+            continue
+        }
+
+        if (Test-SameContent $from $to) {
+            $results += [pscustomobject]@{
+                Skill = $globalName; Tool = 'global'; State = 'in sync'; Detail = '1 files' }
+            continue
+        }
+
+        $exists = Test-Path $to
+        if (-not $Apply) {
+            $results += [pscustomobject]@{
+                Skill = $globalName; Tool = 'global'; State = 'needs sync'
+                Detail = $(if ($exists) { '1 DRIFTED' } else { '1 missing' }) }
+            if ($exists) { Write-Host "    drifted: $to" -ForegroundColor Yellow }
+            continue
+        }
+
+        if ($exists -and -not $Force) {
+            $results += [pscustomobject]@{
+                Skill = $globalName; Tool = 'global'; State = 'REFUSED'
+                Detail = '1 drifted; re-run with -Force to overwrite' }
+            Write-Host "    drifted: $to" -ForegroundColor Red
+            continue
+        }
+
+        $parent = Split-Path $to -Parent
+        if (-not (Test-Path $parent)) { New-Item -ItemType Directory -Force -Path $parent | Out-Null }
+        Copy-Item -LiteralPath $from -Destination $to -Force
+        $results += [pscustomobject]@{
+            Skill = $globalName; Tool = 'global'; State = 'written'; Detail = '1 files' }
+    }
+}
+
 foreach ($skillName in ($manifest.Skills.Keys | Sort-Object)) {
     $skillDir = Join-Path $repo "skills\$skillName"
     if (-not (Test-Path $skillDir)) {
