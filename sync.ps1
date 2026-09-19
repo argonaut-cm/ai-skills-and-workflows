@@ -153,4 +153,10 @@ if (-not $Apply) {
 }
 
 # A refusal is a real failure, so CI and callers see a non-zero exit.
+#
+# Both branches exit explicitly. A script that falls off the end sets no exit
+# code at all, leaving $LASTEXITCODE at whatever the previous command set -- so
+# a clean run following a refusal still read as a failure, and a refusal
+# following a clean run could have read as success.
 if (@($results | Where-Object { $_.State -eq 'REFUSED' }).Count) { exit 1 }
+exit 0
