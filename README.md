@@ -107,6 +107,17 @@ destination, and obey the same drift rules as everything else.
 | Entry | Installs to | Notes |
 |---|---|---|
 | `claude-output-style` | `~/.claude/CLAUDE.md` | Authored 2026-09-19; the original was lost and no copy survived |
+| `claude-settings` | `~/.claude/settings.json` | Written by the app -- drift usually means pull, not push |
+
+**`claude-settings` runs the drift rule backwards.** Claude Code writes that file
+itself, so a difference is normally the app recording a change you made in the
+app, not someone editing the wrong copy. Repair it by copying the destination
+back into `global/claude/settings.json` and committing. Running `-Force` would
+discard a real setting.
+
+Do not put credentials in `global/`. `~/.claude.json` in particular holds
+`userID`, `oauthAccount` and `machineID`, and `~/.gemini/oauth_creds.json` is a
+credential file. Neither belongs in this repository, private or not.
 
 ## Keeping a skill tool-neutral
 

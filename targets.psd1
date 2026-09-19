@@ -46,6 +46,17 @@
             Dest = '$HOME\.claude\CLAUDE.md'
             Note = 'Global output style. Authored 2026-09-19; the original was lost in the 13-Sep wipe and no copy survived.'
         }
+
+        # NOTE ON DRIFT: Claude Code writes this file itself -- toggling any
+        # setting in the app changes it. Drift here is therefore usually the
+        # app recording a real change, and the fix is to copy the destination
+        # back into the repo, NOT to run -Force and discard it. That is the
+        # opposite direction from every other entry, so check before repairing.
+        'claude-settings' = @{
+            From = 'global\claude\settings.json'
+            Dest = '$HOME\.claude\settings.json'
+            Note = 'Claude Code user settings. Written by the app, so drift usually means pull, not push.'
+        }
     }
 
     # Which targets each skill is published to. A skill absent from a target's
