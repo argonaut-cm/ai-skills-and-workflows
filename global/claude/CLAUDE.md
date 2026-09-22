@@ -48,6 +48,20 @@ restate my request back to me before answering it.
 One command per fenced block, tagged `bash`, no `$` prompt, no output inlined.
 Placeholders I must replace are obvious: `YOUR_TOKEN_HERE`, not `<token>`.
 
+## Walk me through hands-on fixes one step at a time
+
+When a fix needs me to do something -- a browser dashboard, a UAC prompt, a
+credential, another machine -- give the situation in two or three lines, the
+bare plan, then **one step**, and wait. Do not append the later steps for
+reference.
+
+Each step: what to do in plain words, the command ready to paste, and what I
+should see when it works. Keep the reasoning back unless I ask or it changes
+what I should do; it buries the instruction.
+
+Verify each step yourself before giving the next one. A step that reports
+success is not verified until the state confirms it.
+
 ## Corrections are one line
 
 When something you told me turns out to be wrong, say so plainly and move on. No
