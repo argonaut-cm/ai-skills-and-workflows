@@ -98,6 +98,21 @@ The short version:
    tool is a decision -- record why in a comment, as `graphify` does.
 4. Run `.\sync.ps1` to confirm, then `-Apply`.
 
+## Course preparation and NotebookLM
+
+`skills/course-to-notebooklm/` provides the shared workflow for complete course
+transcripts, selected video frames and verified NotebookLM imports. Its
+`references/notebooklm-manager.md` is a reusable specialist brief. The companion
+[private course-to-notebooklm project](https://github.com/argonaut-cm/course-to-notebooklm)
+holds the Python helpers, tests and templates; actual course files stay local.
+
+The upstream NotebookLM skill remains managed by
+[gemini-notebook-mcp-cli](https://github.com/jacob-bd/gemini-notebook-mcp-cli).
+It is not copied or installed by `sync.ps1`. See the workflow's
+[setup reference](skills/course-to-notebooklm/references/setup.md) for setup and
+the boundary between the two skills. The custom workflow is published to Claude
+and Codex; the flat project-workflow target cannot carry its supporting references.
+
 ## Globals
 
 `global/` holds single files that configure a tool rather than add a skill.
