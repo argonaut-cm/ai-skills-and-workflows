@@ -1,0 +1,4 @@
+interface:
+  display_name: "Course to NotebookLM"
+  short_description: "Prepare complete course transcripts and video context"
+  default_prompt: "Use $course-to-notebooklm to prepare these lessons and import the requested study files into my selected notebook."
