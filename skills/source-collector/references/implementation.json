@@ -12,7 +12,7 @@
     },
     {
       "path": "src/extract.mjs",
-      "sha256": "40e9091876f0387ff7f7566e7f1c825336fe53b0f31f7d07116e331e3f30466c"
+      "sha256": "2b012dfdc14f649265270dc69a08413b339483459443b199ee1860853fa430e4"
     },
     {
       "path": "src/network.mjs",
@@ -24,7 +24,7 @@
     },
     {
       "path": "test/collector.test.mjs",
-      "sha256": "6aab1bd7c2f87706d8238fdb3b8336062e0c6be8e0498bb5ff7845d488728e3e"
+      "sha256": "44ddb191fef42fabd4afadb3463d2c64d910cedf477df8f2537444f2e85f503a"
     }
   ],
   "usage_sha256": "203b73a98a14d99ad5ddc8abb51a0b7199a9537135ba4d580b6b986835ca3539",

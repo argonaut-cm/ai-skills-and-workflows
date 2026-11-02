@@ -58,10 +58,13 @@ export function extractHtml(html, url, config, feed = false) {
 
 export async function inspectDownload(bytes, url, contentType) {
   const ext = path.posix.extname(new URL(url).pathname).toLowerCase();
-  const start = bytes.subarray(0, 512).toString('utf8').trimStart();
-  if (ext !== '.html' && (/text\/html|application\/xhtml/i.test(contentType) || /^<!doctype html|^<html/i.test(start)))
-    throw new CaptureError('HTML/login/error response returned instead of the expected file', 'invalid-download');
+  const preview = bytes.subarray(0, 512);
+  const start = (bytes[0] === 0xff && bytes[1] === 0xfe ? preview.toString('utf16le') : preview.toString('utf8')).replace(/^\uFEFF/,'').trimStart();
   const zipSignature = bytes.length >= 4 && [0x04034b50,0x06054b50].includes(bytes.readUInt32LE(0));
+  const pdfSignature = bytes.subarray(0,5).equals(Buffer.from('%PDF-'));
+  const mq4SourceSignature = ext === '.mq4' && /^(?:\/\/|\/\*|#property\b|#include\b)/.test(start);
+  if (ext !== '.html' && (/^<!doctype html|^<html/i.test(start) || (/text\/html|application\/xhtml/i.test(contentType) && !zipSignature && !pdfSignature && !mq4SourceSignature)))
+    throw new CaptureError('HTML/login/error response returned instead of the expected file', 'invalid-download');
   if (['.zip', '.sxp', '.sqx', '.sqb'].includes(ext) || zipSignature || /application\/(?:x-)?zip/i.test(contentType)) {
     if (bytes.length < 4 || (bytes.readUInt32LE(0) !== 0x04034b50 && bytes.readUInt32LE(0) !== 0x06054b50))
       throw new CaptureError('Expected ZIP container signature missing', 'invalid-download');

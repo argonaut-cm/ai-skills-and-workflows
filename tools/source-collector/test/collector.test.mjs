@@ -128,6 +128,8 @@ test('robots, scope, credential URLs, redirects and response limits enforce boun
   assert.throws(() => canonical('https://example.com/?token=private'));
   assert.throws(() => canonical('https://user:password@example.com/'));
   await assert.rejects(inspectDownload(Buffer.from('<html>login</html>'),f.base+'/wrong.zip','text/html'),e => e.status === 'invalid-download');
+  assert.equal((await inspectDownload(zip(),f.base+'/valid.sxp','text/html')).type,'zip');
+  assert.equal((await inspectDownload(Buffer.from('\uFEFF// indicator source\n#property strict','utf16le'),f.base+'/valid.mq4','text/html')).type,'mq4');
   await assert.rejects(inspectDownload(zip('../escape.txt'),f.base+'/bad.zip','application/zip'));
   await assert.rejects(inspectDownload(zip('link',0xa000),f.base+'/link.zip','application/zip'),e => e.status === 'unsafe-archive');
 });
