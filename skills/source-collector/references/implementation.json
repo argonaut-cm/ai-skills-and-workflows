@@ -1,0 +1,32 @@
+{
+  "version": "0.1.0",
+  "tool_path": "tools/source-collector",
+  "runtime_files": [
+    {
+      "path": "src/cli.mjs",
+      "sha256": "60af7e9332ba832b03a2dca4e1e0034425664d7b0be9f76c1414e7ead0fe51cc"
+    },
+    {
+      "path": "src/collector.mjs",
+      "sha256": "2b6c3c34d4db5b72e9272e35653783f9c13168d711ebe9b03d02b311c8fcb82b"
+    },
+    {
+      "path": "src/extract.mjs",
+      "sha256": "40e9091876f0387ff7f7566e7f1c825336fe53b0f31f7d07116e331e3f30466c"
+    },
+    {
+      "path": "src/network.mjs",
+      "sha256": "d5241cfd0bea69ea9f924f633bd1a29dd03a6e8cd7987ecc037b18cf0c6390ad"
+    },
+    {
+      "path": "src/store.mjs",
+      "sha256": "cec13550e6fbc96afb00d48913a380bde71f10fe947d4992eee06ce6dea615ec"
+    },
+    {
+      "path": "test/collector.test.mjs",
+      "sha256": "6aab1bd7c2f87706d8238fdb3b8336062e0c6be8e0498bb5ff7845d488728e3e"
+    }
+  ],
+  "usage_sha256": "203b73a98a14d99ad5ddc8abb51a0b7199a9537135ba4d580b6b986835ca3539",
+  "scope": "Generic runtime and public example profile only; no origin-project data or profiles"
+}

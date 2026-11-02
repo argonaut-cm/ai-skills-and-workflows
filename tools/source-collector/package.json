@@ -1,0 +1,21 @@
+{
+  "name": "@argonaut/source-collector",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Profile-driven public source capture, versioned references and reviewed download intake",
+  "engines": { "node": ">=22.12.0" },
+  "bin": { "source-collector": "./src/cli.mjs" },
+  "scripts": { "test": "node --test --test-concurrency=1", "collect": "node src/cli.mjs collect" },
+  "dependencies": {
+    "@crawlee/basic": "3.18.2",
+    "@crawlee/core": "3.18.2",
+    "cheerio": "1.2.0",
+    "fast-xml-parser": "5.11.2",
+    "robots-parser": "3.0.1",
+    "turndown": "7.2.4",
+    "yauzl": "3.4.0"
+  },
+  "optionalDependencies": { "playwright": "1.64.1" },
+  "overrides": { "minimatch": "11.0.1" }
+}

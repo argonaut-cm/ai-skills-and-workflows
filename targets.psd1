@@ -65,6 +65,7 @@
         'step-by-step'    = @('claude', 'codex', 'project-workflows')
         'next-step'       = @('claude', 'codex', 'project-workflows')
         'graphify'        = @('claude', 'codex')   # needs the graphify CLI; no flat-workflow equivalent
+        'source-collector' = @('claude', 'codex') # needs references and companion runtime; flattening omits them
 
         # Both of these came from ~/.gemini/antigravity/skills and are coupled to
         # one project rather than tool-neutral: caveman pins a compression level

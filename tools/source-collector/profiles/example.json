@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "name": "python-tutorial",
+  "allowedHosts": ["docs.python.org"],
+  "allowedPaths": ["/3/tutorial/"],
+  "feeds": [],
+  "pageUrls": ["https://docs.python.org/3/tutorial/index.html"],
+  "enrichFeedPages": "never",
+  "pageMode": "http",
+  "contentSelector": "div.body",
+  "titleSelector": "h1",
+  "downloads": false,
+  "intervalMs": 1000,
+  "concurrency": 1
+}

@@ -98,6 +98,20 @@ The short version:
    tool is a decision -- record why in a comment, as `graphify` does.
 4. Run `.\sync.ps1` to confirm, then `-Apply`.
 
+## Public source collection
+
+`skills/source-collector/` is the shared, tool-neutral workflow for resumable
+RSS/Atom, HTTP/browser capture, source hashes, reviewed file intake and portable
+knowledge exports. The companion [Source Collector](tools/source-collector/README.md)
+includes its runtime, pinned lockfile, integration tests and an independent example
+profile. Read [the skill](skills/source-collector/SKILL.md) before a collection run.
+
+The skill is registered for Claude Code and Codex. It is omitted from the flat
+project-workflow target because that format cannot carry its references or runtime.
+Repository storage does not automatically install skills: use `sync.ps1` for any
+requested installation. Keep project-specific profiles and captured/third-party
+payloads in their origin project; review authorization and visibility before any upload.
+
 ## Globals
 
 `global/` holds single files that configure a tool rather than add a skill.

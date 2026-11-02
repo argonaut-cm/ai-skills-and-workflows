@@ -5,3 +5,6 @@ Thumbs.db
 
 # graphify writes this on install; it is per-machine
 .graphify_version
+node_modules/
+work/
+tools/source-collector/storage/
