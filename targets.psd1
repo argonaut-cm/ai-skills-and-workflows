@@ -66,6 +66,7 @@
         'next-step'       = @('claude', 'codex', 'project-workflows')
         'graphify'        = @('claude', 'codex')   # needs the graphify CLI; no flat-workflow equivalent
         'source-collector' = @('claude', 'codex') # needs references and companion runtime; flattening omits them
+        'notebooklm-steward' = @('claude', 'codex') # retains the optional agent definition; no flat-workflow equivalent
 
         # Both of these came from ~/.gemini/antigravity/skills and are coupled to
         # one project rather than tool-neutral: caveman pins a compression level

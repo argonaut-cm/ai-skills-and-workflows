@@ -112,6 +112,17 @@ Repository storage does not automatically install skills: use `sync.ps1` for any
 requested installation. Keep project-specific profiles and captured/third-party
 payloads in their origin project; review authorization and visibility before any upload.
 
+## NotebookLM stewardship
+
+[`notebooklm-steward`](skills/notebooklm-steward/SKILL.md) adds an evidence workflow
+for scoped NotebookLM research, citation verification and version checks. It uses
+the installed upstream `nlm-skill` for tool syntax. The optional
+[Codex agent definition](skills/notebooklm-steward/references/notebooklm_researcher.toml)
+can be registered in a trusted project's `.codex/agents/` directory. The role uses
+the parent session's connection. This repository contains the reusable workflow,
+with no project notebook IDs or source exports. Sync is the installation path;
+publishing the skill does not install it globally.
+
 ## Globals
 
 `global/` holds single files that configure a tool rather than add a skill.
